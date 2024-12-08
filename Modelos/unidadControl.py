@@ -140,7 +140,9 @@ class UnidadControl:
                 self.busDatos.set(valor)
                 self.mbr.set(self.busDatos.get())
                 
-                #resultado = self.alu.operar(operacion, self.registros[destino].get(), valor)
+                resultado = self.alu.operar(operacion, self.registros[destino].get(), valor)
+
+                self.alu.set(resultado)
 
                 #self.registros[destino].set(resultado)
 
@@ -226,7 +228,7 @@ class UnidadControl:
                 self.mbr.set(valor)
 
                 self.registros[destino].set(valor)
-                
+
         elif operacion in {"ADD", "SUB", "MUL", "DIV", "AND", "OR", "NOT", "XOR"}:
             if destino not in self.registros:
         
@@ -240,6 +242,8 @@ class UnidadControl:
                 self.mbr.set(self.busDatos.get())
 
                 resultado = self.alu.operar(operacion, self.memoria.leerDato(int(destino)), valor)
+                self.alu.set(resultado)
+
                 self.memoria.escribirDato(int(destino), resultado)
 
             else:
@@ -252,6 +256,7 @@ class UnidadControl:
                 self.mbr.set(valor)
 
                 resultado = self.alu.operar(operacion, self.registros[destino].get(), valor)
+                self.alu.set(resultado)
                 self.registros[destino].set(resultado)
 
         elif operacion == "JMP":
