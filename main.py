@@ -10,4 +10,3 @@ if __name__ == "__main__":
       interfaz.iniciar()
 
 
-#TODO: HACER PRUEBAS Y HACER VALIDACIONES.

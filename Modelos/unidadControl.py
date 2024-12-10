@@ -17,7 +17,7 @@ class UnidadControl:
     def fetchInstruccion(self):
         #tomar el valor del PC que es la direccion de la proxima instruccion
         direccion = self.pc.get() #Se obtiene la direccion de memoria donde se encuentra la instruccion a ejecutar
-        print(f"EL PC TIEN {direccion}")
+        print(f"EL PC TIENE {direccion}")
       
         #la direccion del pc se carga en el MAR
         self.mar.set(direccion)
@@ -115,8 +115,8 @@ class UnidadControl:
                     self.busDatos.set(self.memoria.leerDato(direccion))
                     self.mbr.set(self.busDatos.get())   
                 else:
-                    self.busDatos.set(valor)
-                    self.mbr.set(self.busDatos.get())
+                    #self.busDatos.set(valor)
+                    self.mbr.set(valor)
 
                 #self.registros[destino].set(valor)
 
