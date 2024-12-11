@@ -95,6 +95,7 @@ class UnidadControl:
     def executeInstruccion(self, operacion, destino, fuente, valor, direccion):
         # Ejecución de la instrucción según su tipo
         if operacion == "MOV": #MOV: mueve un valor a un registro o a una direccion de memoria
+                if direccion is not None:
                     self.mar.set(direccion)
                     self.busDirecciones.set(self.mar.get())
 
@@ -102,6 +103,8 @@ class UnidadControl:
 
                     self.busDatos.set(valor)
                     self.mbr.set(self.busDatos.get())
+                else:
+                    self.mbr.set(valor)
                     
                     #self.memoria.escribirDato(int(destino), int(valor))
 
@@ -121,28 +124,37 @@ class UnidadControl:
                 #self.registros[destino].set(valor)
 
         elif operacion == "STORE": #STORE: guarda un valor de un registro en una direccion de memoria
-                self.mar.set(direccion)
-                self.busDirecciones.set(self.mar.get())
+                if direccion is not None:
+                    self.mar.set(direccion)
+                    self.busDirecciones.set(self.mar.get())
 
-                self.busControl.set("READ")
+                    self.busControl.set("READ")
 
-                self.busDatos.set(valor)
-                self.mbr.set(self.busDatos.get())
+                    self.busDatos.set(valor)
+                    self.mbr.set(self.busDatos.get())
+                else:
+                    self.mbr.set(valor)
             
                 #self.memoria.escribirDato(direccion, self.registros[fuente].get())
 
         elif operacion in {"ADD", "SUB", "MUL", "DIV", "AND", "OR", "NOT", "XOR"}: #operaciones aritmeticas Y logicas
-                self.mar.set(direccion)
-                self.busDirecciones.set(self.mar.get())
+                if direccion is not None:
+                    self.mar.set(direccion)
+                    self.busDirecciones.set(self.mar.get())
 
-                self.busControl.set("READ")
+                    self.busControl.set("READ")
 
-                self.busDatos.set(valor)
-                self.mbr.set(self.busDatos.get())
-                
-                resultado = self.alu.operar(operacion, self.registros[destino].get(), valor)
+                    self.busDatos.set(valor)
+                    self.mbr.set(self.busDatos.get())
+                    
+                    resultado = self.alu.operar(operacion, self.registros[destino].get(), valor)
 
-                self.alu.set(resultado)
+                    self.alu.set(resultado)
+                else:
+                    self.mbr.set(valor)
+
+                    resultado = self.alu.operar(operacion, self.registros[destino].get(), valor)
+                    self.alu.set(resultado)
 
                 #self.registros[destino].set(resultado)
 

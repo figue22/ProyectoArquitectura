@@ -18,12 +18,13 @@ class Interfaz:
         # Configurar estilos globales
         estilo = ttk.Style()
         estilo.theme_use("clam")  # Tema moderno
-        estilo.configure("TLabel", background="#f0f0f0", font=("Arial", 10))
-        estilo.configure("TFrame", background="#f0f0f0")
-        estilo.configure("TLabelframe", background="#d9eaf7", font=("Arial", 12, "bold"))
-        estilo.configure("TLabelframe.Label", background="#d9eaf7", font=("Arial", 12, "bold"))
-        estilo.configure("Treeview.Heading", font=("Arial", 10, "bold"))
-        estilo.configure("TButton", background="#85c1e9", font=("Arial", 10))
+        estilo.configure("TLabel", background="#ccccff", font=("Arial", 10))  # Lila claro
+        estilo.configure("TFrame", background="#ffcc99")  # Naranja claro
+        estilo.configure("TLabelframe", background="#99ccff", font=("Arial", 12, "bold"))  # Azul claro
+        estilo.configure("TLabelframe.Label", background="#99ccff", font=("Arial", 12, "bold"))  # Azul claro
+        estilo.configure("Treeview.Heading", font=("Arial", 10, "bold"), background="#ffcc00")  # Amarillo
+        estilo.configure("TButton", background="#66ff66", font=("Arial", 10))  # Verde claro
+
 
     def crear_interfaz(self):
         # Panel de registros
